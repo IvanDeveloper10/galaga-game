@@ -1,3 +1,13 @@
 @import "tailwindcss";
 
-@config "../tailwind.config.js"
+@config "../tailwind.config.js";
+
+.text-2p {
+  font-family: var(--font-2p);
+}
+
+.container-home {
+  background-image: url('/image-background-one.png');
+  background-repeat: repeat;
+
+}

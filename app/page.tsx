@@ -1,56 +1,51 @@
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
+'use client';
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import { Fragment } from 'react';
+import Image from 'next/image';
+import { Button } from '@heroui/button';
+import Link from 'next/link';
+import { Drawer, DrawerContent, DrawerHeader, DrawerBody } from '@heroui/drawer';
+import { useDisclosure } from '@heroui/modal';
 
-export default function Home() {
+export default function HomePage(): JSX.Element {
+
+  const { isOpen, onOpen, onOpenChange }: any = useDisclosure();
+
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-        <br />
-        <span className={title()}>
-          websites regardless of your design experience.
-        </span>
-        <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
+    <Fragment>
+      <section className='container-home w-full h-screen flex'>
+        <main className='w-2/4 flex flex-col justify-center items-center bg-black p-5'>
+          <h1 className='text-2p text-4xl mt-10'>WELCOME TO</h1>
+          <h1 className='text-2p text-8xl text-shadow-white text-shadow-lg'>GALAGA</h1>
+          <div className='w-full flex justify-around flex-wrap items-center mt-5 gap-5'>
+            <Button onPress={onOpen} className='text-2p w-56' color='secondary' variant='shadow'>CHOOSE A LEVEL</Button>
+            <Link href={'/Levels/LevelOne'}>
+              <Button className='text-2p w-52' color='success' variant='shadow'>GO TO PLAY</Button>
+            </Link>
+            <Link href={'PlayOnline'}>
+              <Button className='text-2p' color='danger' variant='shadow'>PLAY ONLINE</Button>
+            </Link>
+          </div>
+        </main>
+        <div className='w-2/4 h-screen flex justify-center items-center'>
+          <Image src={'/game-retro-image.png'} alt={'Image Game Retro'} width={400} height={400}></Image>
         </div>
-      </div>
-
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
-    </section>
+      </section>
+      <Drawer isOpen={isOpen} onOpenChange={onOpenChange}>
+        <DrawerContent>
+          <DrawerHeader className='flex justify-center items-center'>
+            <h1 className='text-2p'>LEVELS</h1>
+          </DrawerHeader>
+          <DrawerBody>
+            <Link href={'/Levels/LevelOne'}>
+              <span className='text-2p'>Level One</span>
+            </Link>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+      <section className='w-full h-screen bg-white rounded-4xl flex justify-center items-center'>
+        <Image src={'/background-image.png'} alt={''} width={1000} height={600}></Image>
+      </section>
+    </Fragment>
   );
 }
