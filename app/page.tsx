@@ -22,9 +22,8 @@ export default function HomePage(): JSX.Element {
             <Link href={'/Levels/LevelOne'}>
               <Button className='text-2p w-52' color='success' variant='shadow'>GO TO PLAY</Button>
             </Link>
-            <Link href={'PlayOnline'}>
-              <Button className='text-2p' color='danger' variant='shadow'>PLAY ONLINE</Button>
-            </Link>
+      
+            <Button className='text-2p' color='danger' variant='shadow' isDisabled>PLAY ONLINE</Button>
           </div>
         </main>
         <div className='w-2/4 h-screen flex justify-center items-center'>
@@ -44,7 +43,7 @@ export default function HomePage(): JSX.Element {
         </DrawerContent>
       </Drawer>
       <section className='w-full h-screen bg-white rounded-4xl flex justify-center items-center'>
-        <Image src={'/background-image.png'} alt={''} width={1000} height={600}></Image>
+        <Image src={'/background-image.jpg'} alt={''} width={1000} height={600}></Image>
       </section>
     </Fragment>
   );
